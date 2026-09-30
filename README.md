@@ -4,6 +4,10 @@
 
 **[Live Demo](https://chirpyworks.github.io/kpi-kit/)** · [한국어](README.ko.md) · [Component map](docs/component-map.md) · [Data contract](docs/kit-contract.md) · [Usage](docs/kit-usage.md) · [Status](docs/status.md)
 
+[![KPI Kit dark Revenue overview with sidebar navigation, four KPI cards, a daily net sales comparison chart, and channel breakdown](docs/assets/revenue-dark-desktop.png)](https://chirpyworks.github.io/kpi-kit/)
+
+Revenue dashboard · dark theme · synthetic example data. Click the preview to explore the live demo.
+
 > **0.1.0-alpha.5 — public alpha.** The workbench includes three composed synthetic dashboards and isolated component examples. This revision has local clean-install, TypeScript, test and production-build evidence; rendered browser verification is a separate release gate. See [verification](docs/verification.md).
 
 ## Why this exists

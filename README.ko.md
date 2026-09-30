@@ -4,6 +4,10 @@
 
 **[Live Demo](https://chirpyworks.github.io/kpi-kit/)** · [English](README.md) · [컴포넌트 목록](docs/component-map.md) · [데이터 규격](docs/kit-contract.md) · [사용법](docs/kit-usage.md) · [현재 상태](docs/status.md)
 
+[![사이드바 내비게이션, KPI 카드 4개, 일별 순매출 비교 차트와 채널별 실적을 보여주는 KPI Kit 다크 테마 매출 대시보드](docs/assets/revenue-dark-desktop.png)](https://chirpyworks.github.io/kpi-kit/)
+
+매출 대시보드 · 다크 테마 · 합성 예제 데이터. 이미지를 누르면 라이브 데모로 이동합니다.
+
 > **0.1.0-alpha.5 — 공개 알파.** 매출·고객·운영의 합성 대시보드와 독립 컴포넌트 예제를 제공합니다. 이 변경은 로컬 clean install, TypeScript, 테스트, 프로덕션 빌드로 검증했으며 실제 브라우저 렌더 검증은 별도 출시 조건입니다. [검증 현황](docs/verification.md)을 확인하세요.
 
 ## 왜 만들었나
