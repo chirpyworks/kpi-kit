@@ -33,7 +33,7 @@ try:
 
         page.get_by_role("button", name="Table").click()
         assert page.get_by_role("table").count() >= 1
-        page.get_by_role("checkbox").first.check()
+        page.get_by_role("checkbox", name="Select row r1").check()
         assert "1 selected" in page.get_by_role("status").inner_text()
 
         page.set_viewport_size({"width": 390, "height": 844})
