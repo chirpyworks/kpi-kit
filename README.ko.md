@@ -4,7 +4,7 @@
 
 **[Live Demo](https://chirpyworks.github.io/kpi-kit/)** · [English](README.md) · [컴포넌트 목록](docs/component-map.md) · [데이터 규격](docs/kit-contract.md) · [사용법](docs/kit-usage.md) · [현재 상태](docs/status.md)
 
-> **0.1.0-alpha.5 — 공개 알파.** 현재 `main` 리비전은 GitHub 환경에서 clean install, 전체 TypeScript 검사, 핵심 테스트, Vite production build, 브라우저 검증, 의존성 audit를 통과했습니다. 안정판 표기 전에는 CI가 생성한 실제 lockfile을 검토해 커밋하는 단계가 남아 있습니다.
+> **0.1.0-alpha.5 — 공개 알파.** 매출·고객·운영의 합성 대시보드와 독립 컴포넌트 예제를 제공합니다. 이 변경은 로컬 clean install, TypeScript, 테스트, 프로덕션 빌드로 검증했으며 실제 브라우저 렌더 검증은 별도 출시 조건입니다. [검증 현황](docs/verification.md)을 확인하세요.
 
 ## 왜 만들었나
 
@@ -24,9 +24,11 @@ BI 플랫폼을 만들려는 것이 아닙니다. 반복적으로 필요한 대�
 | 차트 | Line, area, horizontal bar, vertical bar, grouped bar, stacked bar, waterfall, donut, bullet |
 | 테이블 | 열 정의, 검색, 안정 정렬, 페이지 이동, 행/페이지 선택, 필터 결과 CSV, 선택 행 CSV |
 | 컨트롤 | Button, Badge, Field, Checkbox, Switch, FilterChip, Tabs, Tooltip, DateRangeField, Dialog |
-| 상태 | Loading, empty, error, partial coverage, stale data |
+| 상태·오류 화면 | 로딩, 빈 데이터, 검색 결과 없음, 오류·재시도, 오프라인, 오래됨, 일부 수집; 403/404/500/점검 페이지 |
+| 화면 조립 | 셸·헤더·사이드바, 경로, 상세 패널, 페이지 이동; 입력 검증, 선택·필터, 확인창, 알림 |
 | 데이터 | 검증된 KPI 계약, 명시적 범위/단위/품질, 안전한 비교, 최신 요청만 적용하는 비동기 로더 |
-| 작업대 | 한/영, 라이트/다크, 로컬 KPI JSON 가져오기, 실제 부품·코드 확인 |
+| 작업대 | 뷰포트형 라이브러리 / 미리보기 / 설정·코드, 모바일 패널 탭, 한/영, 라이트/다크 |
+| 예제 | 같은 기간 필터로 동작하는 매출·고객·운영 대시보드, 실행 가능한 컴포넌트 코드 |
 
 차트 9개는 서로 다른 엔진 9개를 뜻하지 않습니다. 선/영역은 같은 시리즈 렌더러를, 그룹/누적 막대는 같은 멀티시리즈 계약을 공유합니다.
 
@@ -35,13 +37,13 @@ BI 플랫폼을 만들려는 것이 아닙니다. 반복적으로 필요한 대�
 Node 22.12+와 npm이 필요합니다.
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
 Vite가 알려주는 주소를 엽니다. `/index.html`은 전체 작업대, `/kit.html`은 컴포넌트 작업대로 바로 들어가는 경로입니다.
 
-첫 정상 설치에서는 실제 `package-lock.json`이 생성됩니다. 이 lockfile을 검토하고 커밋한 뒤 `npm ci`를 재현 가능한 설치 경로로 사용합니다. 가짜 lockfile은 넣지 않습니다.
+`package-lock.json`은 실제 npm 설치로 생성했으며 새 `npm ci` 설치로 확인했습니다. 의존성을 변경할 때는 npm으로 lockfile을 갱신하세요.
 
 ## KPI 부품 사용 예
 
@@ -95,7 +97,7 @@ python -m playwright install chromium
 npm run test:kit
 ```
 
-GitHub 워크플로는 공개 저장소에서 실제 설치 경로를 검증하고 기술 증거를 짧은 기간 artifact로 보존합니다. 자동 배포나 npm 발행은 하지 않습니다.
+검증 워크플로는 실제 설치 경로를 검증하고 기술 증거를 짧은 기간 artifact로 보존합니다. 별도 Pages 워크플로는 `main`의 공개 데모를 빌드·배포합니다. npm 패키지는 발행하지 않습니다.
 
 ## 범위
 

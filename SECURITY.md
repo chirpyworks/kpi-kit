@@ -1,6 +1,6 @@
 # Security and data safety
 
-KPI Kit is an alpha client-side source kit and has not undergone an independent security audit. It does not provide authentication or authorization.
+KPI Kit is an alpha client-side source kit. Targeted source and dependency checks are not a comprehensive external security audit. It does not provide authentication or authorization.
 
 Do not place credentials, private customer data, personal contact details, or database connection strings in `public/`, source files, screenshots, issues, or fixtures. Anything shipped in a static browser bundle can be inspected. Connect private datasets through your own authorized server. Hiding a component is not access control.
 
@@ -9,3 +9,5 @@ The example JSON importer validates a bounded local file and keeps it in browser
 Use GitHub's private vulnerability reporting if it is enabled for this repository. Otherwise, do not publish exploitable details or secrets in a public issue; ask for a private contact route without including sensitive details.
 
 The verification workflow runs on pull requests, pushes to `main`, and manual dispatch. It uses a GitHub-hosted runner with read-only repository permission, installs project/test dependencies, and executes repository code. Review workflow changes carefully. It does not deploy, publish npm packages, or receive publication secrets.
+
+The separate Pages workflow publishes the static demo from `main`. Its build job has read-only repository access; only the deployment job has Pages write and OIDC permissions. Do not add runtime credentials to this static site.

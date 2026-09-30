@@ -7,5 +7,20 @@
     "declaration": false,
     "sourceMap": false
   },
-  "include": ["src/kit/contracts.ts", "src/kit/core/**/*.ts"]
+  "include": [
+    "src/kit/contracts.ts",
+    "src/kit/core/**/*.ts",
+    "src/demo/dashboard-data.ts",
+    "src/demo/DashboardPreview.tsx",
+    "src/demo/chart-examples.ts",
+    "src/demo/example-code.ts",
+    "src/kit/**/*.tsx",
+    "src/demo/StateStudio.tsx",
+    "src/demo/state-examples.ts",
+    "src/demo/ControlStudio.tsx",
+    "src/demo/control-examples.ts",
+    "src/demo/NavigationStudio.tsx",
+    "src/demo/navigation-examples.ts",
+    "src/demo/studio-catalog.tsx"
+  ]
 }

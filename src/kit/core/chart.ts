@@ -72,6 +72,25 @@ export function chartScale(values: readonly (number | null)[]) {
   return { min, max, ticks };
 }
 
+/** Position within a display domain, from its minimum (0) to maximum (1). */
+export function chartPosition(value: number, domain: readonly [number, number]): number {
+  const [min, max] = domain;
+  const span = max - min;
+  if (![value, min, max, span].every(Number.isFinite) || !(span > 0))
+    throw new RangeError('Chart positions require a finite value and increasing domain.');
+  return (value - min) / span;
+}
+
+/**
+ * A signed interval in normalized plot coordinates. Null remains missing and
+ * equal endpoints have exactly zero size, even when both endpoints are nonzero.
+ */
+export function chartInterval(from: number | null, to: number | null, domain: readonly [number, number]) {
+  if (from === null || to === null) return null;
+  const first = chartPosition(from, domain), last = chartPosition(to, domain);
+  return { start: Math.min(first, last), end: Math.max(first, last), size: Math.abs(last - first) };
+}
+
 
 export function validateMultiSeries(points: readonly MultiSeriesPoint[], series: readonly ChartSeries[], options: { stacked?: boolean } = {}) {
   if (series.length < 1 || series.length > 4)
