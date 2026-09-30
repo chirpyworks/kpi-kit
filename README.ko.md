@@ -2,9 +2,9 @@
 
 **숫자의 의미를 잃지 않으면서 빠르게 조립할 수 있는 오픈소스 React KPI·차트·테이블·필터·데이터 상태 키트입니다.**
 
-[English](README.md) · [컴포넌트 목록](docs/component-map.md) · [데이터 규격](docs/kit-contract.md) · [사용법](docs/kit-usage.md) · [현재 상태](docs/status.md)
+**[Live Demo](https://chirpyworks.github.io/kpi-kit/)** · [English](README.md) · [컴포넌트 목록](docs/component-map.md) · [데이터 규격](docs/kit-contract.md) · [사용법](docs/kit-usage.md) · [현재 상태](docs/status.md)
 
-> **0.1.0-alpha.5 — 공개 알파 후보.** 이 저장소는 릴리스 상태를 과장하지 않습니다. clean install, 실제 lockfile 생성, 전체 TypeScript 검사, Vite production build, 브라우저 검증을 저장소 워크플로에서 실행한 뒤 이 리비전의 공개 알파 근거로 사용합니다. 안정판 표기는 검토된 lockfile과 `main`의 재검증까지 필요합니다.
+> **0.1.0-alpha.5 — 공개 알파.** 현재 `main` 리비전은 GitHub 환경에서 clean install, 전체 TypeScript 검사, 핵심 테스트, Vite production build, 브라우저 검증, 의존성 audit를 통과했습니다. 안정판 표기 전에는 CI가 생성한 실제 lockfile을 검토해 커밋하는 단계가 남아 있습니다.
 
 ## 왜 만들었나
 
