@@ -2,9 +2,9 @@
 
 **An open-source React kit for KPI patterns, charts, tables, filters, and data states — designed to be customized without losing the meaning of the numbers.**
 
-[한국어](README.ko.md) · [Component map](docs/component-map.md) · [Data contract](docs/kit-contract.md) · [Usage](docs/kit-usage.md) · [Status](docs/status.md)
+**[Live Demo](https://chirpyworks.github.io/kpi-kit/)** · [한국어](README.ko.md) · [Component map](docs/component-map.md) · [Data contract](docs/kit-contract.md) · [Usage](docs/kit-usage.md) · [Status](docs/status.md)
 
-> **0.1.0-alpha.5 — public alpha candidate.** The source is intentionally honest about its release state. A clean install, generated lockfile, full TypeScript check, Vite production build, and browser verification are run by the repository workflow before this revision is treated as publishable alpha evidence. Stable-release language requires an additional reviewed lockfile and green verification on `main`.
+> **0.1.0-alpha.5 — public alpha.** The current `main` revision has passed GitHub-hosted clean install, full TypeScript checks, core tests, Vite production build, browser verification, and dependency audit. The generated lockfile is still awaiting review/commit before stable-release language is used.
 
 ## Why this exists
 
