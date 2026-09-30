@@ -6,7 +6,9 @@
   "type": "module",
   "license": "MIT",
   "author": "CHIRPYWORKS",
-  "engines": { "node": ">=22.12.0" },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:kit": "vite --host 127.0.0.1 --open /kit.html",
@@ -19,7 +21,8 @@
     "test:kit": "npm run build && python tests/kit_browser.py",
     "check:repository": "node scripts/check-repository.mjs",
     "verify": "npm run check:repository && npm run typecheck && npm test && npm run build",
-    "verify:release": "node scripts/verify-release.mjs"
+    "verify:release": "node scripts/verify-release.mjs",
+    "build:standalone": "npm run build && node scripts/create-preview.mjs"
   },
   "dependencies": {
     "react": "18.2.0",

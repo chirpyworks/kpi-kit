@@ -60,3 +60,62 @@ test('table query sorts and CSV neutralizes spreadsheet formulas', () => {
   const csv=rowsToCsv(rows,columns);
   assert.match(csv,/"'=cmd"/);
 });
+
+test('signed chart intervals grow from the same zero baseline', async () => {
+  const { chartInterval, chartPosition } = await import('../.test-build/src/kit/core/chart.js');
+  const domain = [-20, 40];
+  const negative = chartInterval(0, -20, domain);
+  const positive = chartInterval(0, 40, domain);
+  assert.equal(negative.start, 0);
+  assert.equal(negative.end, chartPosition(0, domain));
+  assert.equal(positive.start, negative.end);
+  assert.equal(positive.end, 1);
+  assert.ok(Math.abs(positive.size - 2 * negative.size) < 1e-12);
+});
+
+test('zero and missing intervals never gain a nonzero bar', async () => {
+  const { chartInterval } = await import('../.test-build/src/kit/core/chart.js');
+  assert.deepEqual(chartInterval(100, 100, [0, 200]), { start: .5, end: .5, size: 0 });
+  assert.deepEqual(chartInterval(0, 0, [-20, 20]), { start: .5, end: .5, size: 0 });
+  assert.equal(chartInterval(0, null, [0, 200]), null);
+  assert.equal(chartInterval(null, 100, [0, 200]), null);
+});
+
+test('waterfall zero changes preserve the running value and render zero height', async () => {
+  const { chartInterval } = await import('../.test-build/src/kit/core/chart.js');
+  const result = waterfallSteps(100, [
+    { key: 'zero', label: 'No movement', value: 0 },
+    { key: 'loss', label: 'Loss', value: -120 },
+    { key: 'zero-negative', label: 'Still unchanged', value: 0 },
+  ]);
+  assert.equal(result.end, -20);
+  const zero = result.steps.find(step => step.key === 'zero');
+  const negativeZero = result.steps.find(step => step.key === 'zero-negative');
+  assert.equal(chartInterval(zero.from, zero.to, [-20, 100]).size, 0);
+  assert.equal(chartInterval(negativeZero.from, negativeZero.to, [-20, 100]).size, 0);
+  assert.equal(result.steps.find(step => step.key === 'loss').to, -20);
+});
+
+test('chart positions retain tiny safe observations without an artificial span floor', async () => {
+  const { chartPosition, chartInterval } = await import('../.test-build/src/kit/core/chart.js');
+  assert.equal(chartPosition(1e-15, [0, 2e-15]), .5);
+  assert.equal(chartInterval(0, -1e-15, [-2e-15, 2e-15]).size, .25);
+  assert.throws(() => chartPosition(1, [0, 0]), RangeError);
+  assert.throws(() => chartPosition(1, [2, 1]), RangeError);
+  assert.throws(() => chartPosition(Infinity, [0, 1]), RangeError);
+  assert.throws(() => chartPosition(0, [-Number.MAX_VALUE, Number.MAX_VALUE]), RangeError);
+});
+
+test('chart scales and series paths distinguish missing data from zero', async () => {
+  const { chartScale, seriesSegments, multiSeriesValues } = await import('../.test-build/src/kit/core/chart.js');
+  assert.equal(chartScale([-7, null, 12]).ticks.includes(0), true);
+  const points = [
+    { key: 'one', label: 'One', value: -1 },
+    { key: 'gap', label: 'Gap', value: null },
+    { key: 'zero', label: 'Zero', value: 0 },
+  ];
+  assert.deepEqual(seriesSegments(points), [[{ index: 0, value: -1 }], [{ index: 2, value: 0 }]]);
+  assert.deepEqual(multiSeriesValues([{ key: 'row', label: 'Row', values: { a: 0 } }], [
+    { key: 'a', label: 'A' }, { key: 'b', label: 'B' },
+  ]), [0, null]);
+});
