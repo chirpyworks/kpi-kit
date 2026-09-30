@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true },
+  "include": [
+    "src/kit/contracts.ts",
+    "src/kit/core/**/*.ts",
+    "examples/load-metrics.ts"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "name": "Open-source kit sample",
+  "isSample": true,
+  "metrics": [
+    {
+      "definition": {
+        "id": "signups",
+        "title": "New accounts",
+        "description": "Distinct new account IDs within the stated business dates.",
+        "unit": {"kind": "count"},
+        "aggregate": "distinct",
+        "polarity": "higher-is-better",
+        "comparison": "relative"
+      },
+      "current": {"value": 1284, "quality": {"coverage": "complete", "freshness": "current"}},
+      "previous": {"value": 1103, "quality": {"coverage": "complete", "freshness": "current"}},
+      "scope": {"id": "week-1", "startDate": "2026-09-01", "endDate": "2026-09-07", "timeZone": "Asia/Seoul", "segment": {}, "revision": "synthetic-v1"},
+      "previousScope": {"id": "previous-week", "startDate": "2026-08-25", "endDate": "2026-08-31", "timeZone": "Asia/Seoul", "segment": {}, "revision": "synthetic-v1"},
+      "sourceLabel": "Synthetic example · not a live service"
+    },
+    {
+      "definition": {"id":"backlog","title":"Support backlog","description":"Unresolved conversations at the end of the period. Do not sum daily backlog.","unit":{"kind":"count"},"aggregate":"last","polarity":"lower-is-better","comparison":"relative"},
+      "current":{"value":43,"quality":{"coverage":"complete","freshness":"current"}},
+      "previous":{"value":57,"quality":{"coverage":"complete","freshness":"current"}},
+      "scope":{"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "previousScope":{"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "sourceLabel":"Synthetic example · not a live service"
+    },
+    {
+      "definition":{"id":"response-time","title":"Response time","description":"Precomputed median server response time in milliseconds. Not an average of daily medians.","unit":{"kind":"duration","base":"ms"},"aggregate":"custom","polarity":"lower-is-better","comparison":"relative"},
+      "current":{"value":850,"quality":{"coverage":"complete","freshness":"current"}},
+      "previous":{"value":1150,"quality":{"coverage":"complete","freshness":"current"}},
+      "scope":{"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "previousScope":{"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "sourceLabel":"Synthetic example · not a live service"
+    },
+    {
+      "definition":{"id":"build-success","title":"Build success","description":"Successful builds divided by observed completed builds.","unit":{"kind":"ratio"},"aggregate":"ratio","polarity":"higher-is-better","comparison":"percentage-points","target":{"value":0.98,"relation":"at-least"}},
+      "current":{"value":0.973,"quality":{"coverage":"complete","freshness":"current"}},
+      "previous":{"value":0.958,"quality":{"coverage":"complete","freshness":"current"}},
+      "scope":{"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "previousScope":{"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "sourceLabel":"Synthetic example · not a live service"
+    },
+    {
+      "definition":{"id":"uptime","title":"Observed uptime","description":"Observed available time divided by monitored time. Coverage is a separate flag.","unit":{"kind":"ratio"},"aggregate":"ratio","polarity":"higher-is-better","comparison":"percentage-points"},
+      "current":{"value":0.9995,"quality":{"coverage":"complete","freshness":"current"}},
+      "previous":{"value":0.999,"quality":{"coverage":"complete","freshness":"current"}},
+      "scope":{"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "previousScope":{"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "sourceLabel":"Synthetic example · not a live service"
+    },
+    {
+      "definition":{"id":"active-workspaces","title":"Active workspaces","description":"Unique workspace IDs active at least once in this complete seven-day period.","unit":{"kind":"count"},"aggregate":"distinct","polarity":"neutral","comparison":"relative"},
+      "current":{"value":342,"quality":{"coverage":"complete","freshness":"current"}},
+      "previous":{"value":316,"quality":{"coverage":"complete","freshness":"current"}},
+      "scope":{"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "previousScope":{"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+      "sourceLabel":"Synthetic example · not a live service"
+    }
+  ]
+}
