@@ -67,7 +67,7 @@ export function StateDemoView({ model, locale, onEvent }: { model: StateDemoMode
     <p className="kk-state-studio-note">{t('Synthetic fixtures only. Actions do not send network requests, grant access, reconnect a service or navigate your browser.', '합성 데이터만 사용합니다. 버튼으로 네트워크를 요청하거나 권한을 부여하거나 서비스를 재연결하거나 실제 페이지를 이동하지 않습니다.')}</p>
     {model.origin === 'no-results' && <label className="kk-state-query">
       <span>{t('Search sample regions', '예제 지역 검색')}</span>
-      <input type="search" value={model.query} onChange={event => onEvent({ type: 'query', query: event.target.value })} placeholder={t('East, West, Central', '동부, 서부, 중부')} />
+      <input type="search" aria-label={t('Search sample regions', '예제 지역 검색')} value={model.query} onChange={event => onEvent({ type: 'query', query: event.target.value })} placeholder={t('East, West, Central', '동부, 서부, 중부')} />
       <span>{t(`${rows.length} of 3 match`, `3개 중 ${rows.length}개 일치`)}</span>
     </label>}
     {phase === 'ready' ? <section className="kk-state-demo-result" aria-label={t('Successful demo result', '예제 성공 결과')}>
@@ -84,7 +84,7 @@ export function StateDemoView({ model, locale, onEvent }: { model: StateDemoMode
           {rows.length > 0 && <StateEvidence model={model} locale={locale} />}
         </AsyncState>}
     {isSimulatable && <div className="kk-state-demo-controls">
-      <label>{t('Simulated result', '시뮬레이션 결과')}<select value={model.outcome} onChange={event => onEvent({ type: 'outcome', outcome: event.target.value as 'success' | 'failure' })}>
+      <label>{t('Simulated result', '시뮬레이션 결과')}<select aria-label={t('Simulated result', '시뮬레이션 결과')} value={model.outcome} onChange={event => onEvent({ type: 'outcome', outcome: event.target.value as 'success' | 'failure' })}>
         <option value="success">{t('Success', '성공')}</option><option value="failure">{t('Fail again', '다시 실패')}</option>
       </select></label>
       {phase === 'loading' && <Button variant="primary" onClick={() => onEvent({ type: 'complete' })}>{t('Complete simulated request', '시뮬레이션 요청 완료')}</Button>}

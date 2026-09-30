@@ -204,7 +204,7 @@ export default function Example() {
     <div className="kk-root kk-state-studio">
       <p className="kk-state-studio-note">{copy.note}</p>
       {model.origin === 'no-results' && <label className="kk-state-query">{copy.query}
-        <input type="search" value={model.query} onChange={event => dispatch({ type: 'query', query: event.target.value })} />
+        <input type="search" aria-label={copy.query} value={model.query} onChange={event => dispatch({ type: 'query', query: event.target.value })} />
         <span>{rows.length} {copy.matching}</span>
       </label>}
       {phase === 'ready' ? <section className="kk-state-demo-result"><h3>{copy.ready}</h3><p>{copy.snapshot}: {snapshot}</p>{evidence}</section>
@@ -214,7 +214,7 @@ export default function Example() {
           : <AsyncState kind={phase} locale="${locale}" actions={actions} metadata={metadata}>{evidence}</AsyncState>}
       <div className="kk-state-demo-controls">
         {!['403', '404', 'no-results'].includes(model.origin) && <label>{copy.outcome}
-          <select value={model.outcome} onChange={event => dispatch({ type: 'outcome', outcome: event.target.value as 'success' | 'failure' })}>
+          <select aria-label={copy.outcome} value={model.outcome} onChange={event => dispatch({ type: 'outcome', outcome: event.target.value as 'success' | 'failure' })}>
             <option value="success">{copy.success}</option><option value="failure">{copy.failure}</option>
           </select>
         </label>}
