@@ -1,6 +1,6 @@
 # Current status — 0.1.0-alpha.5
 
-KPI Kit is a public-alpha React dashboard source kit. The workbench upgrade is a local, reviewable implementation; public main/deployment status is separate.
+KPI Kit is a public-alpha React dashboard source kit. The workbench is available in public GitHub source and the [live demo](https://chirpyworks.github.io/kpi-kit/). Release evidence recorded on 2026-09-30 is linked in [verification](verification.md).
 
 Implemented:
 - viewport-fit technical navy/light-blue workspace, distinct template/component modes, optional inspector and mobile panel tabs;
@@ -20,12 +20,12 @@ Implemented:
 - self-contained copyable TSX examples, compiled in both locales;
 - real reviewed npm lockfile and extended source/SSR/data/browser test coverage.
 
-Verified and unverified checks are listed in [verification](verification.md). Browser test code exists, but a passing run and rendered visual review on this revision are not yet established.
+Verified and unverified checks are listed in [verification](verification.md). The recorded release passed production-build Chromium behavior checks and a bounded cloud-browser desktop review. Physical-device and broader accessibility/security limits remain explicit.
 
 Not claimed:
 - hosted BI service, arbitrary CSV/schema inference or authentication/backend services;
 - a complete application design system or stable npm package;
 - production data correctness beyond the declared synthetic adapter;
-- published/merged/deployed changes merely because local tests pass.
+- universal security, accessibility or production readiness based only on the recorded checks.
 
 Additional components should solve a clear analytical task with an explicit contract and meaningful tests.
