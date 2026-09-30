@@ -1,0 +1,58 @@
+name: Bootstrap technical verification
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: kpi-kit-verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.event.repository.visibility == 'public'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Source hygiene
+        run: node scripts/check-repository.mjs
+      - name: Install or use the real lockfile
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          if test -f package-lock.json; then
+            npm ci --no-fund 2>&1 | tee artifacts/npm-install.txt
+          else
+            npm install --no-fund 2>&1 | tee artifacts/npm-install.txt
+          fi
+      - name: Browser test dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install -r tests/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Fresh-install, source and production-URL verification
+        run: |
+          set -euo pipefail
+          npm run verify:release 2>&1 | tee artifacts/release-verification.txt
+      - name: Preserve evidence and proposed lockfile, not a release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kpi-kit-technical-verification
+          path: |
+            artifacts/
+            package-lock.json
+          retention-days: 3

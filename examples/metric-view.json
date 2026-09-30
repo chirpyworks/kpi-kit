@@ -1,0 +1,16 @@
+{
+  "definition": {
+    "id": "signups",
+    "title": "New accounts",
+    "description": "Distinct new account IDs within the stated business dates.",
+    "unit": {"kind": "count"},
+    "aggregate": "distinct",
+    "polarity": "higher-is-better",
+    "comparison": "relative"
+  },
+  "current": {"value":1284,"quality":{"coverage":"complete","freshness":"current"}},
+  "previous": {"value":1103,"quality":{"coverage":"complete","freshness":"current"}},
+  "scope": {"id":"week-1","startDate":"2026-09-01","endDate":"2026-09-07","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+  "previousScope": {"id":"previous-week","startDate":"2026-08-25","endDate":"2026-08-31","timeZone":"Asia/Seoul","segment":{},"revision":"synthetic-v1"},
+  "sourceLabel": "Synthetic example · not a live service"
+}

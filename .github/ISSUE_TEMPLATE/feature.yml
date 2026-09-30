@@ -1,0 +1,23 @@
+name: Focused feature
+description: A reusable dashboard component or improvement
+title: "[feature] "
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: Developer task
+      description: What should someone be able to build? Describe the task, not just a widget name.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Input, states and example
+      description: Include synthetic input and the expected output or behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Scope and trade-offs
+      description: Why existing components are insufficient; keyboard/mobile/data limitations.

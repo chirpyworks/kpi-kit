@@ -1,0 +1,30 @@
+name: Reproducible bug
+description: A behavior, data, accessibility or installation defect
+title: "[bug] "
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and revision
+      description: Commit/version, OS, browser, Node and npm. Never paste credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Steps and a small synthetic dataset. State the page (/kit.html or /index.html).
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected and actual result
+      description: For numeric issues, include units, denominator, scope and expected calculation.
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Commands and errors
+      description: Include actual exit/error messages after removing private paths and secrets.
