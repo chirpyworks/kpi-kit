@@ -81,8 +81,8 @@ def main() -> None:
             capture(page, "opening", 390, 844, "04-opening-390.png")
             capture(page, "core", 390, 844, "05-core-390.png")
             capture(page, "proof", 390, 844, "06-proof-390.png")
-            capture_confirmation(page, 1440, 1000, "07-job2-before-1440.png")
-            capture_confirmation(page, 390, 844, "08-job2-before-390.png")
+            capture_confirmation(page, 1440, 1000, "09-job2-after-1440.png")
+            capture_confirmation(page, 390, 844, "10-job2-after-390.png")
             browser.close()
         print(f"Project Takeover browser evidence written to {ARTIFACTS}")
     finally:
