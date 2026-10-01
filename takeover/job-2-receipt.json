@@ -1,0 +1,50 @@
+{
+  "receipt_version": "0.1",
+  "job_id": "JOB-02",
+  "project_id": "kpi-kit",
+  "outcome": "Confirmation-control mobile action hierarchy reconstructed without changing the interaction contract.",
+  "status": "ACCEPTED_SELF_CHECK",
+  "standard": {
+    "version": "1.1",
+    "applied": [
+      "S-02",
+      "S-05",
+      "S-06"
+    ],
+    "repeated_rule_text_in_job_input": false
+  },
+  "evidence": {
+    "before": {
+      "ci_run": 36821184597,
+      "artifact": 11143891325,
+      "file": "artifacts/takeover/08-job2-before-390.png"
+    },
+    "after": {
+      "ci_run": 36821424500,
+      "artifact": 11143586561,
+      "file": "artifacts/takeover/10-job2-after-390.png"
+    },
+    "context_manifest": {
+      "artifact": 11143586561,
+      "file": "artifacts/takeover-job2-context.json"
+    },
+    "code": {
+      "commit": "c31d53d921ba3744d8362e140d7fcebd4f3bbb0b",
+      "path": "src/kit/ui/controls.css"
+    }
+  },
+  "checks": [
+    "repository source hygiene",
+    "deterministic Standard context resolution",
+    "release verification",
+    "browser behavior checks",
+    "rendered 1440px and 390px evidence",
+    "horizontal page-overflow assertion"
+  ],
+  "external_effects": "Repository branch only; no external customer system or private data.",
+  "additional_user_corrections": 0,
+  "unresolved": [
+    "This proves governed context transfer and an operator-assisted code change, not an autonomous commercial runtime."
+  ],
+  "next_action": "Update the public proof frame to the actual Job 1 → Standard v1.1 → Job 2 evidence."
+}
