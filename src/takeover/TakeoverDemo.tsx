@@ -141,15 +141,15 @@ function Proof(){
   return <main className="pt-transfer">
     <header className="pt-transfer-head">
       <p className="pt-kicker"><span/>TRANSFER PROOF / STANDARD DELTA</p>
-      <div><h1>One correction.<br/><em>Not two explanations.</em></h1><p>The proof is not that Job 1 can be fixed. The proof is that a project-wide correction survives into Job 2 without being pasted back into the prompt.</p></div>
+      <div><h1>One correction.<br/><em>Not two explanations.</em></h1><p>Job 1 exposed a responsive failure. That rendered finding became Standard v1.1, then a different Job 2 loaded the rule without repeating it in the job input.</p></div>
     </header>
 
     <section className="pt-transfer-sequence">
       <article className="pt-transfer-step">
         <span className="pt-step-no">01</span>
-        <p className="pt-step-label">JOB 1 / CORRECTION</p>
-        <blockquote>“Don’t use equal emphasis for primary and secondary choices. This is a project-wide rule, not just this screen.”</blockquote>
-        <div className="pt-human">HUMAN CORRECTION <strong>1</strong></div>
+        <p className="pt-step-label">JOB 1 / RENDERED REVIEW</p>
+        <blockquote>At 390px, the last secondary KPI became an orphaned half-width block — preserving components but breaking hierarchy and grouping.</blockquote>
+        <div className="pt-human">REJECTED RENDER <strong>01</strong></div>
       </article>
 
       <div className="pt-transfer-link"><i/><span>CLASSIFIED AS<br/><strong>PROJECT RULE</strong></span><i/></div>
@@ -157,35 +157,35 @@ function Proof(){
       <article className="pt-transfer-step pt-delta">
         <span className="pt-step-no">02</span>
         <p className="pt-step-label">STANDARD / v1.0 → v1.1</p>
-        <div className="pt-delta-row"><del>S-01 One decision at a time</del></div>
-        <div className="pt-delta-row added"><ins>S-01 One decision at a time</ins><p>Primary and secondary actions cannot compete for equal visual weight.</p></div>
-        <div className="pt-delta-meta"><span>OWNER / RUDA</span><span>SCOPE / PROJECT</span><span>SOURCE / EXPLICIT CORRECTION</span></div>
+        <div className="pt-delta-row"><del>Desktop collapse was sufficient.</del></div>
+        <div className="pt-delta-row added"><ins>S-06 Responsive reconstruction</ins><p>Rebuild hierarchy and grouping on narrow screens; do not create orphaned evidence, dead space, or false prominence.</p></div>
+        <div className="pt-delta-meta"><span>SOURCE / REJECTED RENDER</span><span>SCOPE / RESPONSIVE COMPOSITION</span><span>STATUS / ACTIVE</span></div>
       </article>
 
-      <div className="pt-transfer-link"><i/><span>APPLIED WITHOUT<br/><strong>REPEATED INSTRUCTION</strong></span><i/></div>
+      <div className="pt-transfer-link"><i/><span>RESOLVED FROM v1.1<br/><strong>RULE TEXT NOT REPEATED</strong></span><i/></div>
 
       <article className="pt-transfer-step pt-job2">
         <span className="pt-step-no">03</span>
-        <p className="pt-step-label">JOB 2 / SETTINGS PERMISSION FLOW</p>
-        <h2>Fix the permission flow.</h2>
+        <p className="pt-step-label">JOB 2 / CONFIRMATION CONTROL</p>
+        <h2>Bring the confirmation specimen to release quality at 390px.</h2>
         <div className="pt-job2-check">
-          <span>STANDARD USED</span><strong>S-01 / S-02 / S-05</strong>
+          <span>STANDARD LOADED</span><strong>S-02 / S-05 / S-06</strong>
         </div>
-        <div className="pt-job2-result"><span>REPEATED HIERARCHY INSTRUCTION</span><strong>NONE</strong></div>
+        <div className="pt-job2-result"><span>REPEATED S-06 TEXT IN INPUT</span><strong>FALSE</strong></div>
       </article>
     </section>
 
     <section className="pt-receipt">
-      <div className="pt-receipt-title"><span>COMPLETION RECEIPT / JOB 2</span><strong>ACCEPTED</strong></div>
+      <div className="pt-receipt-title"><span>COMPLETION RECEIPT / JOB 2</span><strong>ACCEPTED*</strong></div>
       <div className="pt-receipt-grid">
-        <div><span>OUTCOME</span><strong>Permission flow hierarchy rebuilt</strong></div>
-        <div><span>STANDARD</span><strong>v1.1 / 3 items applied</strong></div>
-        <div><span>EVIDENCE</span><strong>Responsive states + code diff + browser check</strong></div>
-        <div><span>HUMAN INTERVENTIONS</span><strong>0 repeated corrections</strong></div>
-        <div><span>UNRESOLVED</span><strong>None material</strong></div>
-        <div><span>NEXT</span><strong>Release candidate review</strong></div>
+        <div><span>OUTCOME</span><strong>Primary action gains 1.62× spatial mass at 390px</strong></div>
+        <div><span>STANDARD</span><strong>v1.1 / S-02 · S-05 · S-06</strong></div>
+        <div><span>EVIDENCE</span><strong>CI 36821424500 · artifact 11143586561</strong></div>
+        <div><span>USER RE-CORRECTIONS</span><strong>0</strong></div>
+        <div><span>INTERACTION CONTRACT</span><strong>Unchanged · CSS-only transfer</strong></div>
+        <div><span>AUTONOMY</span><strong>Operator-assisted behavior proof</strong></div>
       </div>
-      <p>Prototype receipt. The final product may only claim checks that were actually executed.</p>
+      <p>* SELF_CHECK acceptance. The transfer is real and reproducible; it does not yet prove an autonomous production runtime.</p>
     </section>
   </main>
 }
