@@ -1,0 +1,23 @@
+{
+  "job_id": "JOB-02",
+  "project_id": "kpi-kit",
+  "standard_version": "1.1",
+  "input": "Bring the confirmation-control specimen to release quality at 390px without changing its interaction contract.",
+  "scopes": [
+    "product-surface",
+    "responsive-composition",
+    "release"
+  ],
+  "exclusions": [
+    "do not change confirmation state-machine semantics",
+    "do not add a new control type",
+    "do not remove keyboard/focus behavior"
+  ],
+  "evidence_required": [
+    "resolved Standard context manifest",
+    "rendered before/after at 390px",
+    "repository verification",
+    "interaction contract unchanged"
+  ],
+  "note": "The Job input intentionally does not restate the responsive hierarchy rule added in Standard v1.1."
+}
