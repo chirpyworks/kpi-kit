@@ -52,7 +52,7 @@ def capture_confirmation(page, width: int, height: int, filename: str) -> None:
     page.goto(f"http://{HOST}:{PORT}/index.html", wait_until="networkidle")
     page.emulate_media(reduced_motion="reduce")
     if width <= 1100:
-        page.get_by_role("button", name="Library", exact=True).click()
+        page.get_by_role("tab", name="Library", exact=True).click()
     page.get_by_role("button", name="Forms & feedback", exact=True).click()
     page.locator(".demo-studio-selector select").select_option("confirm")
     page.wait_for_timeout(100)
