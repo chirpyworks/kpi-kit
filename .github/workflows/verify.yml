@@ -43,10 +43,18 @@ jobs:
           set -euo pipefail
           python -m pip install -r tests/requirements.txt
           python -m playwright install --with-deps chromium
+      - name: Resolve Job 2 Standard context
+        run: |
+          set -euo pipefail
+          node scripts/takeover-resolve.mjs takeover/standard.v1.1.json takeover/job-2.json artifacts/takeover-job2-context.json | tee artifacts/takeover-job2-context.txt
       - name: Fresh-install, source and production-URL verification
         run: |
           set -euo pipefail
           npm run verify:release 2>&1 | tee artifacts/release-verification.txt
+      - name: Render Project Takeover visual evidence
+        run: |
+          set -euo pipefail
+          python tests/takeover_browser.py 2>&1 | tee artifacts/takeover-browser.txt
       - name: Preserve evidence and proposed lockfile, not a release
         if: always()
         uses: actions/upload-artifact@v4

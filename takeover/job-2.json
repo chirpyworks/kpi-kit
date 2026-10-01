@@ -1,0 +1,56 @@
+{
+  "job_id": "JOB-02",
+  "project_id": "kpi-kit",
+  "standard_version": "1.1",
+  "input": "Bring the confirmation-control specimen to release quality at 390px without changing its interaction contract.",
+  "scopes": [
+    "product-surface",
+    "responsive-composition",
+    "release"
+  ],
+  "exclusions": [
+    "do not change confirmation state-machine semantics",
+    "do not add a new control type",
+    "do not remove keyboard/focus behavior"
+  ],
+  "evidence_required": [
+    "resolved Standard context manifest",
+    "rendered before/after at 390px",
+    "repository verification",
+    "interaction contract unchanged"
+  ],
+  "note": "The Job input intentionally does not restate the responsive hierarchy rule added in Standard v1.1.",
+  "status": "ACCEPTED_SELF_CHECK",
+  "resolution": {
+    "before": {
+      "ci_run": 36821184597,
+      "artifact": 11143891325,
+      "file": "artifacts/takeover/08-job2-before-390.png"
+    },
+    "after": {
+      "ci_run": 36821424500,
+      "artifact": 11143586561,
+      "file": "artifacts/takeover/10-job2-after-390.png"
+    },
+    "context_manifest": {
+      "artifact": 11143586561,
+      "file": "artifacts/takeover-job2-context.json",
+      "input_contains_selected_rule_text": false,
+      "selected_standard_items": [
+        "S-02",
+        "S-05",
+        "S-06"
+      ]
+    },
+    "code_change": {
+      "commit": "c31d53d921ba3744d8362e140d7fcebd4f3bbb0b",
+      "path": "src/kit/ui/controls.css",
+      "summary": "At <=600px, the final action in a control footer receives 1.62× flex growth while semantics and component state remain unchanged."
+    },
+    "result": "At 390px the primary Review reset action has materially greater spatial mass than Restore sample filters; the interaction contract is unchanged.",
+    "additional_user_corrections": 0,
+    "verification": "CI passed source hygiene, Standard resolution, release verification, browser behavior, rendered evidence, and overflow checks.",
+    "independence": "SELF_CHECK",
+    "autonomy_status": "OPERATOR_ASSISTED_BEHAVIOR_PROOF"
+  }
+}

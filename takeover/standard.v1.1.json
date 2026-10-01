@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1",
+  "project_id": "kpi-kit",
+  "standard_version": "1.1",
+  "status": "ACTIVE_PROOF",
+  "items": [
+    {
+      "standard_item_id": "S-01",
+      "type": "PRINCIPLE",
+      "priority": "STRONG",
+      "scope": "dashboard-composition",
+      "statement": "Primary and secondary information must not compete for equal visual weight.",
+      "source_type": "EXPLICIT_USER_DECISION",
+      "source_ref": "founder-review:public-safe",
+      "reason": "The dashboard must reveal what matters first instead of distributing attention evenly.",
+      "verification_method": "Rendered review of first/second/third attention order.",
+      "status": "ACTIVE"
+    },
+    {
+      "standard_item_id": "S-02",
+      "type": "CONSTRAINT",
+      "priority": "STRONG",
+      "scope": "product-surface",
+      "statement": "Do not add a feature or component when hierarchy, copy, layout, or state treatment can solve the problem.",
+      "source_type": "PROJECT_CANON",
+      "source_ref": "README.md#why-this-exists",
+      "reason": "KPI Kit is a reusable decision surface, not a feature catalogue.",
+      "verification_method": "Diff review for unnecessary surface-area additions.",
+      "status": "ACTIVE"
+    },
+    {
+      "standard_item_id": "S-03",
+      "type": "PRINCIPLE",
+      "priority": "STRONG",
+      "scope": "data-visualization",
+      "statement": "Evidence and comparison meaning take precedence over decoration.",
+      "source_type": "PROJECT_CANON",
+      "source_ref": "docs/design.md#priorities",
+      "reason": "The source kit exists to preserve KPI meaning, scope, comparison and evidence.",
+      "verification_method": "Check that visual emphasis maps to the analytical question and real synthetic data.",
+      "status": "ACTIVE"
+    },
+    {
+      "standard_item_id": "S-04",
+      "type": "REJECTED_PATTERN",
+      "priority": "STRONG",
+      "scope": "dashboard-composition",
+      "statement": "Avoid a collection of equal-weight KPI cards when the metrics have different decision priority.",
+      "source_type": "EXPLICIT_USER_DECISION",
+      "source_ref": "founder-review:public-safe",
+      "reason": "Equal tiles create a card-wall reading pattern instead of a decision path.",
+      "verification_method": "Primary metric must have materially greater mass or contrast than supporting metrics.",
+      "status": "ACTIVE"
+    },
+    {
+      "standard_item_id": "S-05",
+      "type": "ACCEPTANCE_RULE",
+      "priority": "BLOCKING",
+      "scope": "release",
+      "statement": "Loading, empty, no-results, error, offline, stale/partial, permission and error-page states remain covered.",
+      "source_type": "PROJECT_CANON",
+      "source_ref": "README.md#included",
+      "reason": "A visually stronger dashboard must not erase state completeness.",
+      "verification_method": "Existing repository verification and state examples remain passing/present.",
+      "status": "ACTIVE"
+    },
+    {
+      "standard_item_id": "S-06",
+      "type": "PRINCIPLE",
+      "priority": "STRONG",
+      "scope": "responsive-composition",
+      "statement": "Responsive layouts must reconstruct hierarchy and grouping instead of mechanically collapsing the desktop grid when that creates orphaned evidence, dead space, or false prominence.",
+      "source_type": "REJECTED_ARTIFACT",
+      "source_ref": "CI 36820390128 / artifact 11143150857 → accepted remediation CI 36820630654 / artifact 11143735900",
+      "reason": "The first mobile reflow preserved components but broke the relationship between primary and supporting metrics.",
+      "verification_method": "Rendered narrow-viewport review must preserve first/second/third attention order and intentional grouping without orphaned secondary surfaces.",
+      "status": "ACTIVE",
+      "recorded_by": "RUDA Director under founder commercialization delegation",
+      "evidence_class": "EVIDENCE_DERIVED"
+    }
+  ],
+  "previous_version": "1.0",
+  "delta_reason": "Job 1 mobile rendered review revealed that responsive collapse must preserve hierarchy and grouping."
+}
