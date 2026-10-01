@@ -13,7 +13,8 @@ const required = [
 for (const file of required) if (!files.includes(file)) throw new Error(`Missing tracked file: ${file}`);
 
 const forbidden = /^(node_modules|dist|\.test-build|artifacts|__pycache__)\//;
-for (const file of files) if (forbidden.test(file) || /(^|\/)\.env(\.|$)/.test(file)) throw new Error(`Forbidden tracked path: ${file}`);
+const safeEnvExample = /(^|\/)\.env(?:\.[^/]+)?\.(example|template|sample)$/;
+for (const file of files) if (forbidden.test(file) || (/(^|\/)\.env(\.|$)/.test(file) && !safeEnvExample.test(file))) throw new Error(`Forbidden tracked path: ${file}`);
 
 const risky = [/BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY/, /ghp_[A-Za-z0-9]{20,}/, /github_pat_[A-Za-z0-9_]{20,}/, /sk-proj-[A-Za-z0-9_-]{20,}/];
 for (const file of files.filter(f=>/\.(md|json|ya?ml|tsx?|mjs|cjs|py|html|css|svg)$/.test(f))) {

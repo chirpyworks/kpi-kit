@@ -1,0 +1,5 @@
+title = "Repository credential prevention"
+
+# Keep upstream built-in rules and defaults. No additional allowlists.
+[extend]
+useDefault = true
