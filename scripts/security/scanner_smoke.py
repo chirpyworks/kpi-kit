@@ -18,12 +18,21 @@ def run_case(command, content, expected, label):
     if result.returncode != expected:
         print("Scanner contract failed for {} (exit {}, expected {}).".format(
             label, result.returncode, expected), file=sys.stderr)
+        # Only scalar scan summaries from the synthetic fixture may be shown.
+        if "Git history" in label:
+            for line in result.stderr.decode(errors="replace").splitlines():
+                if any(summary in line for summary in ("commits scanned", "no leaks found", "leaks found")):
+                    print("Synthetic fixture summary: " + line[:200], file=sys.stderr)
         return False
     print("Scanner contract passed: " + label)
     return True
 
 def history_controls():
-    with tempfile.TemporaryDirectory() as temp:
+    # GitHub's shared runner temp is suitable for Docker bind mounts.
+    with tempfile.TemporaryDirectory(dir=os.environ.get("RUNNER_TEMP")) as temp:
+        # This directory contains only inert fixtures. With capabilities dropped,
+        # container root cannot bypass the runner-owned mkdtemp default mode 0700.
+        Path(temp).chmod(0o755)
         git = os.environ.get("GIT", "git")
         command = [git, "-C", temp]
         def execute(*args):
@@ -36,13 +45,16 @@ def history_controls():
                 "commit", "-qm", "safe synthetic fixture")
         scanner = ["docker", "run", "--rm", "--network=none", "--read-only",
                    "--cap-drop=ALL", "--security-opt=no-new-privileges",
+                   "-e", "GIT_CONFIG_COUNT=1", "-e", "GIT_CONFIG_KEY_0=safe.directory",
+                   "-e", "GIT_CONFIG_VALUE_0=/fixture",
                    "-v", str(CONFIG) + ":/config/gitleaks.toml:ro",
                    "-v", temp + ":/fixture:ro", IMAGE, "git", "/fixture",
-                   "--config=/config/gitleaks.toml", "--log-opts=--all",
-                   "--redact=100", "--no-banner", "--log-level=error", "--ignore-gitleaks-allow"]
+                   "--config=/config/gitleaks.toml", "--log-opts=--all --format=medium",
+                   "--redact=100", "--no-banner", "--log-level=info", "--ignore-gitleaks-allow"]
         if not run_case(scanner, None, 0, "safe synthetic Git history"):
             return False
-        path.write_bytes(b"ghp_" + b"SYNTHETICNONFUNCTIONAL".ljust(36, b"0") + b"\n")
+        marker = b"ghp_" + b"SYNTHETICNONFUNCTIONAL".ljust(36, b"0")
+        path.write_bytes(b"token" + b" = " + marker + b"\n")
         execute("add", "fixture.txt")
         execute("-c", "user.name=Synthetic test", "-c", "user.email=test@example.invalid",
                 "commit", "-qm", "nonfunctional synthetic sentinel")
@@ -50,6 +62,27 @@ def history_controls():
         execute("add", "fixture.txt")
         execute("-c", "user.name=Synthetic test", "-c", "user.email=test@example.invalid",
                 "commit", "-qm", "remove synthetic sentinel from current tree")
+        history = subprocess.check_output(command + ["log", "--all", "-p"])
+        if marker not in history or marker in path.read_bytes():
+            print("Synthetic Git-history construction failed.", file=sys.stderr)
+            return False
+        container_log = subprocess.run([
+            "docker", "run", "--rm", "--network=none", "--read-only",
+            "--cap-drop=ALL", "--security-opt=no-new-privileges", "--entrypoint=git",
+            "-v", temp + ":/fixture:ro", IMAGE, "-c", "safe.directory=/fixture",
+            "-C", "/fixture", "log", "--all",
+            "-p", "--format=medium",
+        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if container_log.returncode or marker not in container_log.stdout:
+            print("Container could not read the synthetic Git history (exit {}, bytes {}).".format(
+                container_log.returncode, len(container_log.stdout)), file=sys.stderr)
+            error_text = container_log.stderr.decode(errors="replace").lower()
+            for category in ("dubious ownership", "not a git repository", "permission denied",
+                             "bad object", "unknown revision", "unable to read", "no such file"):
+                if category in error_text:
+                    print("Synthetic container Git error category: " + category, file=sys.stderr)
+            return False
+        print("Container synthetic Git history verified without printing its contents.")
         return run_case(scanner, None, 1, "removed synthetic sentinel in Git history")
 
 def main():

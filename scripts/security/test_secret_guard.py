@@ -23,16 +23,25 @@ class SecretGuardTests(unittest.TestCase):
             # Inspect real Git fixture construction; do not run or emulate Gitleaks.
             mount = next(item for item in command if item.endswith(":/fixture:ro"))
             folder = mount[:-len(":/fixture:ro")]
+            self.assertEqual(0o755, (Path(folder).stat().st_mode & 0o777))
             history = subprocess.check_output([GIT, "-C", folder, "log", "--all", "-p"])
             current = (Path(folder) / "fixture.txt").read_bytes()
             marker = b"ghp_" + b"SYNTHETICNONFUNCTIONAL".ljust(36, b"0")
-            self.assertIn("--log-opts=--all", command)
+            self.assertIn("--log-opts=--all --format=medium", command)
             self.assertFalse(marker in current, "Current fixture must remain safe")
             self.assertEqual(expected == 1, marker in history, "Historical fixture construction is incorrect")
             seen.append(expected)
             return True
+        original_run = scanner_smoke.subprocess.run
+        def container_fixture_only(command, *args, **kwargs):
+            if command[0] == "docker":
+                marker = b"ghp_" + b"SYNTHETICNONFUNCTIONAL".ljust(36, b"0")
+                return SimpleNamespace(returncode=0, stdout=marker, stderr=b"")
+            return original_run(command, *args, **kwargs)
         with mock.patch.object(scanner_smoke, "run_case", side_effect=inspect_fixture):
-            self.assertTrue(scanner_smoke.history_controls())
+            with mock.patch.object(scanner_smoke.subprocess, "run", side_effect=container_fixture_only):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    self.assertTrue(scanner_smoke.history_controls())
         self.assertEqual([0, 1], seen)
 
     def test_git_failure_returns_two_without_payload(self):
