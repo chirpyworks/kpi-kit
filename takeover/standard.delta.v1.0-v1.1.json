@@ -1,0 +1,22 @@
+{
+  "project_id": "kpi-kit",
+  "from": "1.0",
+  "to": "1.1",
+  "trigger": {
+    "type": "REJECTED_RENDERED_ARTIFACT",
+    "ci_run": 36820390128,
+    "artifact": 11143150857,
+    "observation": "At 390px the 2-column KPI collapse left Order refund rate as an orphaned half-width secondary block, producing dead space and false visual mass."
+  },
+  "classification": "PROJECT_RULE",
+  "decision_owner": "RUDA Director under founder commercialization delegation",
+  "added": [
+    "S-06"
+  ],
+  "accepted_evidence": {
+    "ci_run": 36820630654,
+    "artifact": 11143735900,
+    "observation": "Primary KPI spans the first row; all three supporting KPIs form a single compact evidence strip."
+  },
+  "independence": "SELF_CHECK"
+}
