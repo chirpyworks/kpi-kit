@@ -51,7 +51,7 @@ function Opening({setFrame}:{setFrame:(f:Frame)=>void}){
           <span>HANDOFF</span>
         </div>
         <figure className="pt-proof-image">
-          <img src="./docs/assets/revenue-dark-desktop.png" alt="Existing KPI Kit revenue dashboard before takeover"/>
+          <img src="./takeover/revenue-before.png" alt="Existing KPI Kit revenue dashboard before takeover"/>
           <figcaption><strong>BEFORE</strong><span>Attention distributed across equal-weight surfaces.</span></figcaption>
         </figure>
       </div>
@@ -120,7 +120,7 @@ function Core({setFrame}:{setFrame:(f:Frame)=>void}){
           <div className="pt-applies"><span>APPLIES</span><b>S-01</b><b>S-03</b><b>S-04</b></div>
         </header>
         <div className="pt-artifact-stage">
-          <img src="./docs/assets/revenue-dark-desktop.png" alt="Existing KPI Kit revenue dashboard"/>
+          <img src="./takeover/revenue-before.png" alt="Existing KPI Kit revenue dashboard"/>
           <div className="pt-annotation a1"><span>01</span><p>Primary KPI competes with three peers.</p></div>
           <div className="pt-annotation a2"><span>02</span><p>Controls sit inside the strongest analytical surface.</p></div>
           <div className="pt-annotation a3"><span>03</span><p>Supporting evidence reads as another dashboard column.</p></div>
