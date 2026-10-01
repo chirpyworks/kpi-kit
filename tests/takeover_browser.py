@@ -47,6 +47,19 @@ def capture(page, frame: str, width: int, height: int, filename: str) -> None:
     page.screenshot(path=str(ARTIFACTS / filename), full_page=True)
 
 
+def capture_confirmation(page, width: int, height: int, filename: str) -> None:
+    page.set_viewport_size({"width": width, "height": height})
+    page.goto(f"http://{HOST}:{PORT}/index.html", wait_until="networkidle")
+    page.emulate_media(reduced_motion="reduce")
+    if width <= 1100:
+        page.get_by_role("button", name="Library", exact=True).click()
+    page.get_by_role("button", name="Forms & feedback", exact=True).click()
+    page.locator(".demo-studio-selector select").select_option("confirm")
+    page.wait_for_timeout(100)
+    assert_no_horizontal_overflow(page, f"job2-confirm-{width}")
+    page.screenshot(path=str(ARTIFACTS / filename), full_page=True)
+
+
 def main() -> None:
     env = dict(os.environ)
     server = subprocess.Popen(
@@ -68,6 +81,8 @@ def main() -> None:
             capture(page, "opening", 390, 844, "04-opening-390.png")
             capture(page, "core", 390, 844, "05-core-390.png")
             capture(page, "proof", 390, 844, "06-proof-390.png")
+            capture_confirmation(page, 1440, 1000, "07-job2-before-1440.png")
+            capture_confirmation(page, 390, 844, "08-job2-before-390.png")
             browser.close()
         print(f"Project Takeover browser evidence written to {ARTIFACTS}")
     finally:
